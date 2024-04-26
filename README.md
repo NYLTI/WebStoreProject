@@ -10,14 +10,14 @@ End date - There is no particular end date for this as i plan to expand it the m
 
 Components - This section will go over all the components of the application
 More components will be added as a i discover more concepts I want to include in the project
-Todo - Eureka Server, Gateway, Config Server, Users, Product, Cart, Payment Method. 
+Todo - Users, Product, Cart, Payment Method. 
 To Learn - Authenticaion, JWT, Spring Security, Kafka
 
-In Progress -
+Analysis - Config Server
 
-Analysis -
+In Progress - Gateway
 
-Testing -
+Testing - Eureka Server
 
 Done -
 
