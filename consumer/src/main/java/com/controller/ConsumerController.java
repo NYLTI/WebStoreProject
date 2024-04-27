@@ -18,7 +18,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/consumer")
-//@CrossOrigin(origins = { "http://localhost:3000" })
 public class ConsumerController {
 	private ConsumerService consumerService;
 
@@ -29,14 +28,19 @@ public class ConsumerController {
 
 	@PostMapping("/register")
 	public ResponseEntity<Optional<Consumer>> register(@RequestBody @Valid Consumer consumer) {
-		return Optional.ofNullable(consumerService.register(consumer))
-				.map(savedConsumer -> ResponseEntity.status(HttpStatus.CREATED).body(savedConsumer))
-				.orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty()));
+		Optional<Consumer> opt = consumerService.register(consumer);
+		if(opt.isPresent()) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(opt);
+		}else {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty());
+		}
+//		return Optional.ofNullable(consumerService.register(consumer))
+//				.map(savedConsumer -> ResponseEntity.status(HttpStatus.CREATED).body(savedConsumer))
+//				.orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty()));
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<Optional<Consumer>> login(@RequestBody Map<String, String> consumerMap) {
-		System.out.println("logging in");
 		return Optional.ofNullable(consumerService.login(consumerMap))
 				.map(loggedConsumer -> ResponseEntity.accepted().body(loggedConsumer))
 				.orElseGet(() -> ResponseEntity.notFound().build());
