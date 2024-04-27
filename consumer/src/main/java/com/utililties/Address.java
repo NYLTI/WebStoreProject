@@ -18,5 +18,5 @@ public class Address {
 	@Size(min = 5, message = "Zip code has to be 5 numbers")
 	@Size(max = 5, message = "Zip code has to be 5 numbers")
 	@Pattern(regexp = "^\\d{5}$")
-	private String zipCode;
+	private String postalCode;
 }
