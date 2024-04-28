@@ -17,7 +17,7 @@ import com.service.ConsumerService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/consumer")
+@RequestMapping("/v1/consumer")
 public class ConsumerController {
 	private ConsumerService consumerService;
 

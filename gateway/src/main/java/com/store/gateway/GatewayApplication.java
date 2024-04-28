@@ -17,8 +17,10 @@ public class GatewayApplication {
 	@Bean
 	RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("cr", rs -> rs.path("/consumer/**")
+				.route("cr", rs -> rs.path("/v1/consumer/**")
 						.uri("lb://ms-consumer"))
+				.route("pr", rs -> rs.path("/v1/product/**")
+						.uri("lb://ms-product"))
 				.build();
 	}
 
