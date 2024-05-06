@@ -1,15 +1,14 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormsModule, FormBuilder, Validators, FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormsModule, Validators, FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ConsumerService } from '../../services/consumer.service';
-import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule,
-    HttpClientModule, ReactiveFormsModule],
+    ReactiveFormsModule],
   providers: [ConsumerService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -28,7 +27,7 @@ export class LoginComponent {
   };
 
   formSubmitted: boolean = false;
-  useLogInForm: boolean = false;
+  useLogInForm: boolean = true;
   invalidUser: boolean = false;
   emailUsed: boolean = false;
   email: string;
@@ -36,7 +35,7 @@ export class LoginComponent {
   firstName: string;
   lastName: string;
 
-  constructor(private consumerService: ConsumerService, private formBuilder: FormBuilder) {
+  constructor(private consumerService: ConsumerService) {
     this.logInForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required])
@@ -57,25 +56,28 @@ export class LoginComponent {
       this.user.lastName = this.signUpForm.get('lastName')?.value;
       this.user.password = this.signUpForm.get('password')?.value;
       this.consumerService.signUp(this.user)
-      .subscribe((response) => {
-        this.user = response;
-        if (this.user == null) {
-          this.emailUsed = true;
-          console.log('email is in use');
-        } else {
-          this.emailUsed = false;
-          console.log(response);
-        }
-      },
-        (error) => {
-          if (error.status === 409) {
-            this.emailUsed = true;
-            console.log("email is already in use");
-          } else {
-            console.log(error);
-            alert('something went wrong');
+        .subscribe({
+          next: (response) =>{
+            this.user = response;
+            if(this.user == null){
+              this.emailUsed = true;
+              console.log('email is used by another account');
+            }else{
+              this.emailUsed = false;
+              console.log(response);
+            }
+          },
+          error: (e) =>{
+            if(e.status === 409){
+              this.emailUsed = true;
+              console.log('email is already in use');
+            }else{
+              console.log(e);
+              alert('something went wrong, please try again later')
+            }
           }
         })
+      
     }else{
       console.log('invalid sign up form');
     }
@@ -87,26 +89,29 @@ export class LoginComponent {
       console.log('log in form is valid');
       this.email = this.logInForm.get('email')?.value;
       this.password = this.logInForm.get('password')?.value;
+
       this.consumerService.logIn(this.email, this.password)
-        .subscribe((response) => {
-          // console.log(response)
-          this.user = response
-          if (this.user == null) {
-            this.invalidUser = true;
-            console.log('invalid user');
-          } else {
-            this.invalidUser = false;
-            console.log(response);
-          }
-        },
-          (error) => {
-            if (error.status === 401) {
+        .subscribe({
+          next: (response) => {
+            this.user = response;
+            if(this.user == null){
               this.invalidUser = true;
-            } else {
-              console.log(error);
-              alert('something went wrong');
+              console.log('invalid user');
+            }else{
+              this.invalidUser = false;
+              console.log(response)
             }
-          })
+          },
+          error: (e) => {
+            if(e.status === 401){
+              this.invalidUser = true;
+            }else{
+              console.log(e);
+              alert('something went wrong, please try again later');
+            }
+          },
+          complete: () => console.log('login completed')
+        })
     } else {
       console.log('invalid login form');
     }

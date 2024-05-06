@@ -1,7 +1,6 @@
-import { Injectable, NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user';
-import { error } from 'console';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,16 +16,6 @@ export class ConsumerService {
 
   logIn(email:string, password:string):Observable<User>{
     return this.http.post<User>(`${this.baseUrl}/login`, {email, password})
-    //   .subscribe((response)=>{
-    //     // console.log(response);
-    //     this.user = response;
-    //     console.log(this.user.id)
-    //     return this.user;
-    //   },
-    // (error)=>{
-    //   console.log(error)
-    // })
-    // return this.user;
   }
   signUp(user: User){
     return this.http.post<User>(`${this.baseUrl}/register`, user)
