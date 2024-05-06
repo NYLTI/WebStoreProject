@@ -1,50 +1,119 @@
 <section class="forms-section">
 	<h1 class="section-title">Web Store App</h1>
 	<div class="forms">
-	  <div [ngClass]="{'form-wrapper': true, 'is-active':useLogIn}">
-		<button type="button" class="switcher switcher-login" (click)="useLogIn=true">
-		  Login
-		  <span class="underline"></span>
-		</button>
-		<form class="form form-login">
-		  <fieldset>
-			<legend>Please, enter your email and password for login.</legend>
-			<div class="input-block">
-			  <label for="login-email">E-mail</label>
-			  <input id="login-email" type="email" required>
-			</div>
-			<div class="input-block">
-			  <label for="login-password">Password</label>
-			  <input id="login-password" type="password" required>
-			</div>
-		  </fieldset>
-		  <button type="submit" class="btn-login">Login</button>
-		  <b>Forgot Password?    </b><a> click here</a>
-		</form>
-	  </div>
-	  <div [ngClass]="{'form-wrapper': true, 'is-active':!useLogIn}">
-		<button type="button" class="switcher switcher-signup"(click)="useLogIn=false">
-		  Sign Up
-		  <span class="underline"></span>
-		</button>
-		<form class="form form-signup">
-		  <fieldset>
-			<legend>Please, enter your email, password and password confirmation for sign up.</legend>
-			<div class="input-block">
-			  <label for="signup-email">E-mail</label>
-			  <input id="signup-email" type="email" required>
-			</div>
-			<div class="input-block">
-			  <label for="signup-password">Password</label>
-			  <input id="signup-password" type="password" required>
-			</div>
-			<div class="input-block">
-			  <label for="signup-password-confirm">Confirm password</label>
-			  <input id="signup-password-confirm" type="password" required>
-			</div>
-		  </fieldset>
-		  <button type="submit" class="btn-signup">Continue</button>
-		</form>
-	  </div>
+		<div [ngClass]="{'form-wrapper': true, 'is-active':useLogInForm}">
+			<button type="button" class="switcher switcher-login" (click)="useLogInForm=true">
+				Login
+				<span class="underline"></span>
+			</button>
+			<form class="form form-login" [formGroup]="logInForm" (submit)="logIn()">
+				<fieldset>
+					<div class="input-block">
+						<label for="login-email">E-mail</label>
+						<input id="login-email" formControlName="email">
+						<div class="text-danger">
+							<span
+								*ngIf="(logInForm.controls['email'].errors?.['required']) && (logInForm.controls['email'].touched)">email
+								is required</span>
+							<span
+								*ngIf="logInForm.controls['email'].errors?.['email'] && logInForm.controls['email'].touched">must
+								be an email</span>
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="login-password">Password</label>
+						<input id="login-password" type="password" formControlName="password">
+						<div class="text-danger">
+							<span
+								*ngIf="(logInForm.controls['password'].errors?.['required']) && (logInForm.controls['password'].touched)">password
+								is required</span>
+						</div>
+					</div>
+				</fieldset>
+				<div class="text-danger">
+					<span *ngIf="invalidUser">User Not Found</span>
+				</div>
+				<button type="submit" class="btn-login">Login</button>
+				<b>Forgot Password? </b><a> click here</a>
+			</form>
+		</div>
+
+
+		<div [ngClass]="{'form-wrapper': true, 'is-active':!useLogInForm}">
+			<button type="button" class="switcher switcher-signup" (click)="useLogInForm=false">
+				Sign Up
+				<span class="underline"></span>
+			</button>
+			<form class="form form-signup" [formGroup]="signUpForm" (submit)="signUp()">
+				<fieldset>
+					<legend>Please, enter your email, password and password confirmation for sign up.</legend>
+					<div class="input-block">
+						<label for="first-name">First Name</label>
+						<input id="first-name" formControlName="firstName">
+						<div class="text-danger">
+							<span
+								*ngIf="(signUpForm.controls['firstName'].errors?.['required']) && (signUpForm.controls['firstName'].touched)">First
+								Name
+								is required</span>
+							<span
+								*ngIf="(signUpForm.controls['firstName'].errors?.['minlength']) && (signUpForm.controls['firstName'].touched)">
+								Name too short</span>
+							<div>
+								<span
+									*ngIf="(signUpForm.controls['firstName'].errors?.['pattern']) && (signUpForm.controls['firstName'].touched)">
+									Alphabets only</span>
+							</div>
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="last-name">Last Name</label>
+						<input id="last-name" formControlName="lastName">
+						<div class="text-danger">
+							<span
+								*ngIf="(signUpForm.controls['lastName'].errors?.['required']) && (signUpForm.controls['lastName'].touched)">Last
+								Name
+								is required</span>
+							<span
+								*ngIf="(signUpForm.controls['lastName'].errors?.['minlength']) && (signUpForm.controls['lastName'].touched)">
+								Name too short</span>
+							<div>
+								<span
+									*ngIf="(signUpForm.controls['lastName'].errors?.['pattern']) && (signUpForm.controls['lastName'].touched)">
+									Alphabets only</span>
+							</div>
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="signup-email">E-mail</label>
+						<input id="signup-email" formControlName="email" type="email">
+						<div class="text-danger">
+							<span
+								*ngIf="(signUpForm.controls['email'].errors?.['required']) && (signUpForm.controls['email'].touched)">Email
+								is required</span>
+							<span
+								*ngIf="(signUpForm.controls['email'].errors?.['email']) && (signUpForm.controls['email'].touched)">
+								Must be an email</span>
+							<span *ngIf="emailUsed">
+								Email already in use
+							</span>
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="signup-password">Password</label>
+						<input id="signup-password" type="password" formControlName="password">
+						<div class="text-danger">
+							<span
+								*ngIf="(signUpForm.controls['password'].errors?.['required']) && (signUpForm.controls['password'].touched)">Password
+								is required</span>
+							<span
+								*ngIf="(signUpForm.controls['password'].errors?.['minlength']) && (signUpForm.controls['password'].touched)">
+								Password must be at least 6</span>
+						</div>
+					</div>
+
+				</fieldset>
+				<button type="submit" class="btn-signup">Continue</button>
+			</form>
+		</div>
 	</div>
-  </section>
+</section>

@@ -41,9 +41,12 @@ public class ConsumerController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Optional<Consumer>> login(@RequestBody Map<String, String> consumerMap) {
-		return Optional.ofNullable(consumerService.login(consumerMap))
-				.map(loggedConsumer -> ResponseEntity.accepted().body(loggedConsumer))
-				.orElseGet(() -> ResponseEntity.notFound().build());
+		Optional<Consumer> opt = consumerService.login(consumerMap);
+		if(opt.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Optional.empty());
+		}else {
+			return ResponseEntity.status(HttpStatus.CREATED).body(opt);
+		}
 	}
 
 }

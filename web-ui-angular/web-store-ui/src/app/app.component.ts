@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { CommonModule } from '@angular/common';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink,
+            RouterLinkActive, HeaderComponent, ProductCardComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'web-store-ui';
