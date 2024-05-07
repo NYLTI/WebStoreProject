@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product';
+import { EmbeddedProduct } from '../interfaces/embedded-product';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  url = 'http://localhost:8010/v1/product';
+  baseURL:string = 'http://localhost:8010/v1/product';
 
-  products: Product[] = []
+  products: EmbeddedProduct[] = []
 
   constructor(private http:HttpClient) {  }
 
-  // getAll(){
-  //   this.http.get(url, )
-  // }
+  getAll(): Observable<EmbeddedProduct>{
+    return this.http.get<EmbeddedProduct>(this.baseURL, {params:{
+      page:0,
+      size:20
+    }})
+  }
 
 }

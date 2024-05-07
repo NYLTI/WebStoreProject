@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import com.model.Product;
-import com.utilities.Category;
 
 @RepositoryRestResource(collectionResourceRel = "product", path = "product", itemResourceRel = "product")
 public interface ProductRepository extends MongoRepository<Product, ObjectId>{
@@ -15,5 +14,5 @@ public interface ProductRepository extends MongoRepository<Product, ObjectId>{
 	List<Product> findBySellerId(@Param("seller") String sellerId);
 	
 	@RestResource(path = "categories", rel ="filterByCategories")
-	List<Product> findByCategoriesIn(@Param("categories") List<Category> categories);
+	List<Product> findByCategoriesIn(@Param("categories") List<String> categories);
 }

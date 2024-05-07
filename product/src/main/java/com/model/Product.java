@@ -5,8 +5,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.utilities.Category;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -26,7 +24,7 @@ public class Product {
 	private Long stockQuantity;
 	private String sellerId;
 	private List<String> imageURLs;
-	private List<Category> categories;
+	private List<String> categories;
 	private Boolean isFeatured = false;
 	private Boolean isBanned = false;
 }

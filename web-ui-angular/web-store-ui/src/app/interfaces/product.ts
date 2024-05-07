@@ -3,7 +3,16 @@ export interface Product {
     name: string,
     description: string,
     price: number,
-    sellerId: string,
-    imageULRs: string[],
+    sellerId?: string,
+    imageURLs: string[],
     categories: string[],
+    stockQuantity: number,
+    _links?:{
+        product:{
+            href: string
+        },
+        self:{
+            href: string
+        }
+    }
 }

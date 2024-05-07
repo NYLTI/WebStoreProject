@@ -17,7 +17,7 @@ export class ConsumerService {
   logIn(email:string, password:string):Observable<User>{
     return this.http.post<User>(`${this.baseUrl}/login`, {email, password})
   }
-  signUp(user: User){
+  signUp(user: User): Observable<User>{
     return this.http.post<User>(`${this.baseUrl}/register`, user)
   }
 }
