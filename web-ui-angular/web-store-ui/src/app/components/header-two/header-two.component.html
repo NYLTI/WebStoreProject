@@ -1,0 +1,51 @@
+<div class="wrapper">
+	<!-- Sidebar  -->
+	<nav id="sidebar" [ngClass]="{'active': sideBarActive}">
+		<div class="sidebar-header">
+			<h3>Web Store Application</h3>
+		</div>
+
+		<ul class="list-unstyled components">
+			<p>Dummy Heading</p>
+			<li [ngClass]="{'active': isBtnActive===1}" (click)="toggleBtn(1)">
+				<a href="">Home</a>
+			</li>
+			<li [ngClass]="{'active': isBtnActive===2}" (click)="toggleBtn(2)">
+				<a href="#">About</a>
+			</li>
+			<li [ngClass]="{'active': isBtnActive===3}" (click)="toggleBtn(3)">
+				<a href="#pageSubmenu">Pages</a>
+			</li>
+			<li [ngClass]="{'active': isBtnActive===4}" (click)="toggleBtn(4)">
+				<a href="#">Portfolio</a>
+			</li>
+			<li [ngClass]="{'active': isBtnActive===5}" (click)="toggleBtn(5)">
+				<a href="#">Contact</a>
+			</li>
+		</ul>
+
+		<ul class="list-unstyled CTAs">
+			<li>
+				<a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+			</li>
+			<li>
+				<a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- Page Content  -->
+	<div id="content">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<button type="button"
+					class="btn btn-info"
+					(click)="sideBarActive = !sideBarActive"
+				>
+					<i class="fas fa-align-left"></i>
+					<span>Menu</span>
+				</button>
+			</div>
+		</nav>
+	</div>
+</div>

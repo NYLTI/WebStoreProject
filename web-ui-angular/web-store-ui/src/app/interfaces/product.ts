@@ -3,11 +3,11 @@ export interface Product {
     name: string,
     description: string,
     price: number,
-    sellerId?: string,
+    sellerId: string,
     imageURLs: string[],
     categories: string[],
     stockQuantity: number,
-    _links?:{
+    _links:{
         product:{
             href: string
         },
