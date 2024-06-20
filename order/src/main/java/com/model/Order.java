@@ -1,8 +1,6 @@
 package com.model;
 
-import java.util.List;
 import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,11 +9,11 @@ import lombok.Data;
 
 @Data
 @Document
-public class Cart {
+public class Order{
 	@Id
 	private ObjectId id;
+	
 	@NotNull
-	@UniqueElements
 	private String userId;
-	private List<String> productList;
+	private String cartId;
 }
