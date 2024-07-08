@@ -27,6 +27,7 @@ public class Product {
 	private List<String> categories;
 	private Boolean isFeatured = false;
 	private Boolean isBanned = false;
+	private Boolean isOnSale = false;
 	
 	public String getId() {
 		return String.valueOf(id);

@@ -1,7 +1,7 @@
 import React from "react";
 import '../../css/login.css'
 
-function LoginAndRegistrationForm(props) {
+function LoginAndRegistrationForm() {
 
     function switchForm(event) {
         const switchers = [...document.querySelectorAll('.switcher')]
