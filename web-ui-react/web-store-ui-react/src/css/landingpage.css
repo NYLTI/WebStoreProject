@@ -1,0 +1,407 @@
+@charset "utf-8";
+
+/* Global Styles */
+a:hover {
+	color: rgba(255, 255, 255, 1.00);
+}
+
+/*header*/
+header {
+	font-family: 'Montserrat', sans-serif;
+	color: rgba(146, 146, 146, 1.00);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+/* Logo placeholder*/
+#logo {
+	float: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 139px;
+	text-align: center;
+	color: rgba(255, 255, 255, 1.00);
+	background-color: rgba(190, 190, 190, 1.00);
+}
+
+/* div for Links in header */
+#headerLinks {
+	float: left;
+	width: calc(100% - 139px);
+	text-align: right;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: rgba(255, 255, 255, 1.00);
+}
+
+/* Links in header */
+#headerLinks a {
+	text-decoration: none;
+	color: rgba(146, 146, 146, 1.00);
+	padding-left: 66px;
+	font-size: 14px;
+}
+
+/* Offer text banner*/
+#offer {
+	font-family: 'Montserrat', sans-serif;
+	clear: both;
+	background-color: rgba(246, 246, 246, 1.00);
+	color: rgba(146, 146, 146, 1.00);
+	padding-left: 115px;
+	padding-top: 57px;
+	padding-bottom: 57px;
+}
+
+/* Main content of the site */
+#content {
+	clear: both;
+	overflow: auto;
+	padding-top: 29px;
+}
+
+/* Sidebar */
+.sidebar {
+	font-family: 'Montserrat', sans-serif;
+	color: rgba(146, 146, 146, 1.00);
+	float: left;
+	width: 20%;
+	padding-left: 3%;
+	padding-right: 3%;
+	text-align: center;
+	background-color: rgba(246, 246, 246, 1.00);
+	padding-top: 36px;
+	height: 784px;
+}
+
+/* main content of the site */
+.mainContent {
+	display: block;
+	width: 100%;
+	text-align: center;
+
+}
+
+/*menubar's properties for menus in sidebar */
+#menubar {
+	text-align: left;
+	color: rgba(146, 146, 146, 1.00);
+	position: relative;
+	left: 0%;
+}
+
+/* Search field in sidebar */
+#search {
+	width: 100%;
+	border-radius: 0px;
+	height: 42px;
+	text-align: center;
+	color: black;
+	font-size: 14px;
+	;
+	margin-bottom: 21px;
+}
+
+/* Whole page content */
+#mainWrapper {
+	width: 90%;
+	padding-left: 10%;
+	margin-top: 2%;
+}
+
+/*menu elements */
+.menu ul li {
+	list-style-type: none;
+	font-size: x-large;
+	position: relative;
+	left: -35px;
+	padding-top: 12px;
+}
+
+/* Product rows for catalog */
+.productRow {
+	overflow: auto;
+	color: rgba(146, 146, 146, 1.00);
+}
+
+/* Each product Information in the catalog */
+.productInfo {
+	float: left;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-left: 1%;
+	margin-right: 1%;
+	width: 22%;
+}
+
+/* Prices of a products in catalog */
+.price {
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+	font-size: 22px;
+	position: relative;
+	width: 150%;
+}
+
+/* Content holder for products in catalog*/
+.productContent {
+	/* position: absolute; */
+	width: 150%;
+	display: block;
+	text-align: center;
+	font-family: source-sans-pro, sans-serif;
+	font-style: normal;
+	color: white;
+	/* margin: 0 0em 1.5em 0em; */
+	max-height: 1.5em;
+	min-height: 1.5em;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+/* Buy button for products in catalog */
+.buyButton {
+	/* display: inline-block; */
+	position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0em;
+	margin-bottom: 6vh;
+    /* white-space: nowrap; */
+    border-radius: 5px;
+	color: rgba(255, 255, 255, 1.00);
+	background-color: rgba(207, 9, 44, 0.95);
+	transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 30px 25px -20px rgba(0, 0, 0, 0.15);
+	width: 150%;
+}
+
+.buyButton:hover {
+	box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);
+	background-color: #c5092a;
+	cursor: pointer;
+}
+
+/* Product's images in catalog */
+.productInfo div img {
+	aspect-ratio: 1/1.3;
+	width: 150%;
+	background-size: cover;
+}
+
+/*Links in sidebar */
+.menu ul li a {
+	color: rgba(146, 146, 146, 1.00);
+	text-decoration: none;
+}
+
+.menu ul li a:hover {
+	color: rgba(107, 97, 97, 1.00);
+	text-decoration: none;
+}
+
+/* Menu headings in sidebar */
+.menu h2 {
+	font-size: 14px;
+}
+
+/*Links under menus in sidebar */
+.menu ul li a {
+	font-size: 14px;
+}
+
+/* Menus in sidebar */
+.menu {
+	margin-bottom: 29px;
+}
+
+/* Media query for tablets */
+@media screen and (max-width:700px) {
+
+	/* search field in sidebar */
+	#search {
+		display: none;
+	}
+
+	/* sidebar */
+	.sidebar {
+		float: none;
+		width: 100%;
+		height: auto;
+		overflow: auto;
+		padding-left: 12%;
+		padding-top: 0px;
+	}
+
+	/* horizontal separators in sidebar */
+	.sidebar hr {
+		display: none;
+	}
+
+	/* The sidebar and maincontent of page */
+	#content {
+		position: relative;
+		top: -22px;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	/*menu headings in sidebar */
+	.menu h2 {
+		display: inline;
+		font-size: medium;
+		padding-right: 6%;
+	}
+
+	/* Unordered List of links */
+	.menu ul {
+		display: inline;
+	}
+
+	/*list elements */
+	.menu ul li {
+		display: inline;
+		font-size: medium;
+		padding-left: 0%;
+		padding-right: 3%;
+	}
+
+	/*The link to be hidden in tablet view */
+	.menu ul .notimp {
+		display: none;
+	}
+
+	/* menus in sidebar */
+	.menu {
+		width: 100%;
+		text-align: center;
+		position: relative;
+		top: 16px;
+	}
+
+	/*menubar in sidebar */
+	#menubar {
+		position: relative;
+		left: -7%;
+		overflow: hidden;
+		width: 95%;
+		padding-top: 0px;
+	}
+
+	/* offer banners content */
+	#offer p {
+		font-size: small;
+	}
+
+	/* main content region of page */
+	.mainContent {
+		overflow: hidden;
+		width: 50%;
+	}
+
+	/* Prices of products in catalog view */
+	.price {
+		font-size: 19px;
+		/* margin-left: 50%; */
+	}
+
+	/* Content holders in catalog view */
+	.productContent {
+		font-size: 16px;
+	}
+
+	/* Buy buttons in catalog view */
+	.buyButton {
+		font-size: 15px;
+	}
+
+	/* Links in header */
+	#headerLinks a {
+		padding-left: 0px;
+		padding-right: 30px;
+	}
+
+	/* Offer- Text banner */
+	#offer {
+		padding-left: 22%;
+	}
+}
+
+/*media query for small screen devices */
+@media screen and (max-width:480px) {
+
+	/*Container for links in header */
+	#headerLinks {
+		width: 100%;
+		text-align: center;
+		background-color: rgba(190, 190, 190, 1.00);
+		padding-bottom: 21px;
+	}
+
+	/* Logo placeholder*/
+	#logo {
+		width: 100%;
+		text-align: center;
+	}
+
+	/* Links in header */
+	#headerLinks a {
+		text-align: center;
+		padding-right: 15px;
+		padding-left: 0px;
+	}
+
+	/*Offer - Text Banner */
+	#offer {
+		padding-left: 0px;
+		text-align: center;
+	}
+
+	/* Menubar in sidebar */
+	#menubar {
+		position: relative;
+		left: -8%;
+		text-align: center;
+	}
+
+	/*Menu headings in sidebar */
+	.menu h2 {
+		width: 100%;
+		display: block;
+	}
+
+	/* Each product in catalog view */
+	.productRow {
+		/* width: 10%; */
+		display: block;
+		padding-left: 100px;
+		padding-right: 100px;
+		position: relative;
+		align-items: center;
+		align-content: center;
+		position: absolute;
+	}
+
+	.productInfo {
+		width: 100%;
+		/* display: block; */
+		position: relative;
+		text-align: center;
+	}
+
+	/* Unordered list for menu elements */
+	.menu ul {
+		position: relative;
+		padding-left: 24%;
+	}
+
+	/* Main content which excludes the sidebar */
+	.mainContent {
+		margin-top: -81px;
+		text-align: center;
+		width: 100%;
+		padding-left: 0px;
+	}
+}
