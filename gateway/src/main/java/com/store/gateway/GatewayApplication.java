@@ -21,8 +21,10 @@ public class GatewayApplication {
 						.uri("lb://ms-consumer"))
 				.route("pr", rs -> rs.path("/v1/product/**")
 						.uri("lb://ms-product"))
-				.route("pr", rs -> rs.path("/v1/cart/**")
+				.route("tr", rs -> rs.path("/v1/cart/**")
 						.uri("lb://ms-cart"))
+				.route("sr", rs -> rs.path("/v1/seller/**")
+						.uri("ls://ms-seller"))
 				.build();
 	}
 

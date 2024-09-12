@@ -1,7 +1,7 @@
 import "../../css/navbar.css"
 import "../../css/searchbox.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function NavBar() {
 
