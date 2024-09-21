@@ -29,6 +29,6 @@ public class Consumer {
 	@NotBlank(message = "Please provide your last name")
 	@Size(min = 2)
 	private String lastName;
-	private Status status = Status.ACTIVE;
+	private Status status = Status.INCOMPLETE;
 	private Address address;
 }

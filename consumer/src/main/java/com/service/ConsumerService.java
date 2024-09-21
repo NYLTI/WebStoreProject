@@ -31,10 +31,25 @@ public class ConsumerService {
 		}
 	}
 	
+	public Consumer completeRegistration(Consumer consumer) {
+		Consumer incompleteConsumer = consumerRepository.getConsumerByEmail(consumer.getEmail());
+		incompleteConsumer = consumer;
+		return consumerRepository.save(incompleteConsumer);
+	}
+	
 	public Optional<Consumer> login(Map<String, String> consumerMap){
 		Optional<Consumer> consumer = consumerRepository.findConsumerByEmail(consumerMap.get("email"));
 		if(consumer.isPresent() && 
 				consumer.get().getPassword().equals(consumerMap.get("password"))) {
+			return consumer;
+		}else {
+			return Optional.empty();
+		}
+	}
+	
+	public Optional<Consumer> findByEmail(String email){
+		Optional<Consumer> consumer = consumerRepository.findConsumerByEmail(email);
+		if(consumer.isPresent()) {
 			return consumer;
 		}else {
 			return Optional.empty();

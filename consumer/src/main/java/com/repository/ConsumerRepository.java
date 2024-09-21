@@ -11,4 +11,5 @@ import com.model.Consumer;
 @Repository
 public interface ConsumerRepository extends MongoRepository<Consumer, UUID> {
 	public Optional<Consumer> findConsumerByEmail(String email);
+	public Consumer getConsumerByEmail(String email);
 }

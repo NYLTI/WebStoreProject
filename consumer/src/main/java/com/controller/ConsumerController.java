@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +27,8 @@ public class ConsumerController {
 		this.consumerService = consumerService;
 	}
 
-	@PostMapping("/register")
-	public ResponseEntity<Optional<Consumer>> register(@RequestBody @Valid Consumer consumer) {
+	@PostMapping("/initialregister")
+	public ResponseEntity<Optional<Consumer>> initialRegister(@RequestBody Consumer consumer) {
 		Optional<Consumer> opt = consumerService.register(consumer);
 		if(opt.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(opt);
@@ -39,6 +40,11 @@ public class ConsumerController {
 //				.orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty()));
 	}
 	
+	@PutMapping("completeregistration")
+	public ResponseEntity<Consumer> completeRegister(@RequestBody @Valid Consumer consumer){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(consumer);
+	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<Optional<Consumer>> login(@RequestBody Map<String, String> consumerMap) {
 		Optional<Consumer> opt = consumerService.login(consumerMap);
@@ -48,5 +54,14 @@ public class ConsumerController {
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(opt);
 		}
 	}
-
+	
+	@PostMapping("/checkemail")
+	public ResponseEntity<Optional<Consumer>> checkEmailExists(@RequestBody String email){
+		Optional<Consumer> opt = consumerService.findByEmail(email);
+		if(opt.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(Optional.empty());
+		}else {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty());
+		}
+	}
 }
