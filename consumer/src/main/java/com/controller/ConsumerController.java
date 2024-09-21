@@ -40,7 +40,7 @@ public class ConsumerController {
 //				.orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty()));
 	}
 	
-	@PutMapping("completeregistration")
+	@PutMapping("/completeregistration")
 	public ResponseEntity<Consumer> completeRegister(@RequestBody @Valid Consumer consumer){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(consumer);
 	}
