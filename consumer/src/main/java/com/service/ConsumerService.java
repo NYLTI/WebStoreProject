@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.model.Consumer;
 import com.repository.ConsumerRepository;
+import com.utililties.Status;
 
 @Service
 public class ConsumerService {
@@ -34,6 +35,7 @@ public class ConsumerService {
 	public Consumer completeRegistration(Consumer consumer) {
 		Consumer incompleteConsumer = consumerRepository.getConsumerByEmail(consumer.getEmail());
 		incompleteConsumer = consumer;
+		incompleteConsumer.setStatus(Status.ACTIVE);
 		return consumerRepository.save(incompleteConsumer);
 	}
 	

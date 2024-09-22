@@ -33,7 +33,7 @@ public class ConsumerController {
 		if(opt.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(opt);
 		}else {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty());
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(opt);
 		}
 //		return Optional.ofNullable(consumerService.register(consumer))
 //				.map(savedConsumer -> ResponseEntity.status(HttpStatus.CREATED).body(savedConsumer))
@@ -42,6 +42,7 @@ public class ConsumerController {
 	
 	@PutMapping("/completeregistration")
 	public ResponseEntity<Consumer> completeRegister(@RequestBody @Valid Consumer consumer){
+		consumer = consumerService.completeRegistration(consumer);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(consumer);
 	}
 	

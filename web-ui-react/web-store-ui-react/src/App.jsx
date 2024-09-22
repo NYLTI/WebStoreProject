@@ -7,8 +7,8 @@ import {
 
 import LogOrRegister from './pages/LogOrRegister'
 import LandingPage from './pages/LandingPage'
+import RegistrationPage from './pages/RegistrationPage';
 import NavBar from './components/NavBar/NavBar';
-// import HomePage from './components/landing/ProductCard';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/login' element ={<LogOrRegister/>}/>
           <Route path='' element = {<LandingPage/>}/>
+          <Route path='/complete-registration' element = {<RegistrationPage/>}/>
           {/* <Route path='' element = {<HomePage/>}/> */}
         </Routes>
       </Router>
