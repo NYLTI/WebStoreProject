@@ -13,7 +13,6 @@ import com.service.ProductService;
 import jakarta.validation.Valid;
 
 @RestController
-//@RequestMapping("/v1/product")
 public class ProductController {
 	
 	private ProductService productService;
